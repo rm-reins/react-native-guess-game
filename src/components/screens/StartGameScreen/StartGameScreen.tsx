@@ -1,6 +1,7 @@
-import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
+import { Button } from "@/components/ui/Button";
+import { Dice3 } from "lucide-react-native";
 import { useState } from "react";
-import { Text, View } from "react-native";
+import { Text, TextInput, View } from "react-native";
 import { styles } from "./StartGameScreen.styles";
 
 export type StartGameScreenProps = {
@@ -10,15 +11,6 @@ export type StartGameScreenProps = {
 function StartGameScreen({ onStart }: StartGameScreenProps) {
   const [number, setNumber] = useState<string>("");
   const [error, setError] = useState<string>("");
-
-  const handleNumberChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const value = e.target.value;
-
-    if (value === "" || /^\d+$/.test(value)) {
-      setNumber(value);
-      setError("");
-    }
-  };
 
   const handleStartGame = () => {
     const parsedNumber = parseInt(number, 10);
@@ -33,14 +25,42 @@ function StartGameScreen({ onStart }: StartGameScreenProps) {
 
     onStart(parsedNumber);
   };
+
   return (
     <View style={styles.container}>
-      <MaterialCommunityIcons
-        name="dice-3-outline"
-        size={24}
-        color="black"
+      <Dice3
+        size={80}
+        strokeWidth={3}
+        style={styles.dice}
       />
-      <Text>Start Game</Text>
+
+      <View style={styles.textContainer}>
+        <Text style={styles.title}>Guess a Number</Text>
+      </View>
+
+      <View style={styles.textContainer}>
+        <Text style={styles.titleDescription}>
+          Enter a number between 1 and 100.
+        </Text>
+      </View>
+
+      <TextInput
+        style={styles.inputContainer}
+        value={number}
+        maxLength={3}
+        inputMode="numeric"
+        keyboardType="number-pad"
+        placeholder="Your number"
+        placeholderTextColor="#7794B7"
+        onChangeText={(value) => setNumber(value)}
+      />
+      {error && <Text style={styles.error}>{error}</Text>}
+      <Button
+        variant="primary"
+        onPress={handleStartGame}
+      >
+        Start Game
+      </Button>
     </View>
   );
 }
