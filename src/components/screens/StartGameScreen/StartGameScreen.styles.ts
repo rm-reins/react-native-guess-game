@@ -9,13 +9,14 @@ export const styles = StyleSheet.create({
   },
   textContainer: {
     flexDirection: "row",
-    flexWrap: "wrap",
     width: "60%",
   },
   title: {
     fontSize: 48,
     fontFamily: "Quicksand-Bold",
     textAlign: "center",
+    flexWrap: "wrap",
+    width: "100%",
   },
   dice: {
     color: "#FF9F43",
@@ -29,6 +30,8 @@ export const styles = StyleSheet.create({
     marginVertical: 24,
     fontSize: 24,
     fontFamily: "Quicksand-Medium",
+    flexWrap: "wrap",
+    width: "100%",
   },
   inputContainer: {
     width: "80%",
@@ -37,7 +40,6 @@ export const styles = StyleSheet.create({
     padding: 16,
     textAlign: "center",
     fontSize: 24,
-    fontWeight: "700",
     fontFamily: "Quicksand-Bold",
     backgroundColor: "#FFFFFF",
   },
