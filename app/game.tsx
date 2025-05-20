@@ -1,5 +1,5 @@
 import { GameScreen } from "@/components/screens/GameScreen";
-import { useLocalSearchParams } from "expo-router";
+import { useLocalSearchParams, useRouter } from "expo-router";
 import { useEffect, useState } from "react";
 
 enum GameState {
@@ -16,6 +16,8 @@ export default function Game() {
   const [parsedUserNumber, setParsedUserNumber] = useState<number>(0);
   const [minRange, setMinRange] = useState<number>(1);
   const [maxRange, setMaxRange] = useState<number>(100);
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
+  const router = useRouter();
 
   useEffect(() => {
     if (userNumber) {
@@ -24,6 +26,7 @@ export default function Game() {
       const initialGuess = Math.floor(Math.random() * 100) + 1;
       setCurrentGuess(initialGuess);
       setGuessCount(1);
+      setGameState(GameState.PLAYING);
     }
   }, [userNumber]);
 
@@ -32,18 +35,36 @@ export default function Game() {
       setCurrentGuess(minRange);
       setGameState(GameState.GAME_OVER);
     }
+
+    if (gameState === GameState.GAME_OVER) {
+      // Navigate to result screen with params
+      router.push({
+        pathname: "/endgame",
+        params: {
+          userNumber: parsedUserNumber,
+          guessCount: guessCount,
+          wasCorrect: parsedUserNumber === currentGuess ? "true" : "false",
+        },
+      });
+    }
   }, [gameState, minRange, maxRange]);
 
   const handleGuessLower = () => {
+    setErrorMessage(null);
+
     const newMaxRange = currentGuess - 1;
 
-    if (parsedUserNumber !== null && parsedUserNumber > currentGuess) {
-      console.log("User number is higher than current guess");
+    if (parsedUserNumber > currentGuess) {
+      setErrorMessage(
+        "You're cheating! Your number can't be higher than this guess."
+      );
       return;
     }
 
     if (newMaxRange < minRange) {
-      console.log("No valid number in range");
+      setErrorMessage(
+        "No valid number in this range. Did you forget your number?"
+      );
       return;
     }
 
@@ -52,15 +73,21 @@ export default function Game() {
   };
 
   const handleGuessHigher = () => {
+    setErrorMessage(null);
+
     const newMinRange = currentGuess + 1;
 
-    if (parsedUserNumber !== null && parsedUserNumber < currentGuess) {
-      console.log("User number is lower than current guess");
+    if (parsedUserNumber < currentGuess) {
+      setErrorMessage(
+        "You're cheating! Your number can't be lower than this guess."
+      );
       return;
     }
 
     if (newMinRange > maxRange) {
-      console.log("No valid number in range");
+      setErrorMessage(
+        "No valid number in this range. Did you forget your number?"
+      );
       return;
     }
 
@@ -74,7 +101,12 @@ export default function Game() {
     setMaxRange(max);
     setGuessCount((prev) => prev + 1);
 
-    if (parsedUserNumber === guess || min === max) {
+    if (parsedUserNumber === guess) {
+      setGameState(GameState.GAME_OVER);
+    } else if (min === max) {
+      setErrorMessage(
+        "Game over! Couldn't find your number. Did you change your mind?"
+      );
       setGameState(GameState.GAME_OVER);
     }
   };
@@ -92,8 +124,11 @@ export default function Game() {
     <GameScreen
       currentGuess={currentGuess}
       guessCount={guessCount}
+      gameState={gameState}
+      errorMessage={errorMessage}
       onGuessLower={handleGuessLower}
       onGuessHigher={handleGuessHigher}
+      onPlayAgain={handlePlayAgain}
     />
   );
 }

@@ -7,11 +7,15 @@ import Animated, {
   withTiming,
 } from "react-native-reanimated";
 import { styles } from "./GameScreen.styles";
+
 interface GameScreenProps {
   currentGuess: number;
   guessCount: number;
+  gameState: number;
+  errorMessage: string | null;
   onGuessLower: () => void;
   onGuessHigher: () => void;
+  onPlayAgain: () => void;
 }
 
 function GameScreen({
@@ -19,6 +23,9 @@ function GameScreen({
   guessCount,
   onGuessLower,
   onGuessHigher,
+  gameState,
+  errorMessage,
+  onPlayAgain,
 }: GameScreenProps) {
   const animatedStyle = useAnimatedStyle(() => {
     return {
@@ -38,8 +45,14 @@ function GameScreen({
       <Text style={styles.title}>Is it ...</Text>
 
       <Animated.View style={[styles.guessContainer, animatedStyle]}>
-        <Text style={styles.guessText}>{currentGuess}</Text>
+        <Text style={styles.guessNumber}>{currentGuess}</Text>
       </Animated.View>
+
+      {errorMessage && (
+        <View style={styles.errorContainer}>
+          <Text style={styles.errorText}>{errorMessage}</Text>
+        </View>
+      )}
 
       <Button
         variant="primary"

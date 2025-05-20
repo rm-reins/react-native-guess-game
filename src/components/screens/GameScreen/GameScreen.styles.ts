@@ -31,8 +31,8 @@ export const styles = StyleSheet.create({
     shadowRadius: 3.84,
     elevation: 5,
   },
-  guessText: {
-    fontSize: 48,
+  guessNumber: {
+    fontSize: 68,
     color: "#FFFFFF",
     fontFamily: "Quicksand-Bold",
   },
@@ -45,5 +45,21 @@ export const styles = StyleSheet.create({
   },
   statsBold: {
     fontFamily: "Quicksand-Bold",
+    color: "#888",
+  },
+  errorContainer: {
+    backgroundColor: "rgba(255, 0, 0, 0.1)",
+    padding: 16,
+    borderRadius: 8,
+    marginVertical: 20,
+    borderWidth: 1,
+    borderColor: "rgba(255, 0, 0, 0.3)",
+    width: "80%",
+  },
+  errorText: {
+    fontFamily: "Quicksand-Medium",
+    color: "#d32f2f",
+    fontSize: 18,
+    textAlign: "center",
   },
 });
