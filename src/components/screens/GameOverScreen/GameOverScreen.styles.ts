@@ -34,6 +34,7 @@ export const styles = StyleSheet.create({
     justifyContent: "center",
     marginBottom: 24,
     shadowColor: "#000",
+    alignContent: "center",
     shadowOffset: {
       width: 0,
       height: 2,
@@ -46,6 +47,7 @@ export const styles = StyleSheet.create({
     color: "#FFFFFF",
     fontSize: 68,
     fontFamily: "Quicksand-Bold",
+    includeFontPadding: false,
   },
   stats: {
     textAlign: "center",

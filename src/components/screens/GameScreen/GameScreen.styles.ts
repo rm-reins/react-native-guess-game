@@ -13,7 +13,7 @@ export const styles = StyleSheet.create({
     marginBottom: 24,
     color: "#2E3A59",
   },
-  guessContainer: {
+  numberContainer: {
     backgroundColor: "#4FC1E9",
     width: 128,
     height: 128,
@@ -35,6 +35,7 @@ export const styles = StyleSheet.create({
     fontSize: 68,
     color: "#FFFFFF",
     fontFamily: "Quicksand-Bold",
+    includeFontPadding: false,
   },
   stats: {
     color: "#A0AEC0",

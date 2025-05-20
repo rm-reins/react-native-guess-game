@@ -44,7 +44,7 @@ function GameScreen({
     <View style={styles.container}>
       <Text style={styles.title}>Is it ...</Text>
 
-      <Animated.View style={[styles.guessContainer, animatedStyle]}>
+      <Animated.View style={[styles.numberContainer, animatedStyle]}>
         <Text style={styles.guessNumber}>{currentGuess}</Text>
       </Animated.View>
 
