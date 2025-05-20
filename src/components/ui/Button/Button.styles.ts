@@ -1,4 +1,4 @@
-import { StyleSheet } from "react-native";
+import { Platform, StyleSheet } from "react-native";
 
 export const styles = StyleSheet.create({
   button: {
@@ -15,7 +15,7 @@ export const styles = StyleSheet.create({
     },
     shadowOpacity: 0.25,
     shadowRadius: 3.84,
-    elevation: 5,
+    elevation: Platform.OS === "ios" ? 5 : 0,
     minHeight: 56,
     minWidth: 120,
     marginVertical: 5,
@@ -23,6 +23,7 @@ export const styles = StyleSheet.create({
   },
   primary: {
     backgroundColor: "#FF9F43",
+    ...(Platform.OS === "android" && { elevation: 5 }),
   },
   secondary: {
     backgroundColor: "transparent",
@@ -36,6 +37,8 @@ export const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "center",
+    includeFontPadding: false,
+    textAlignVertical: "center",
   },
   primaryText: {
     color: "#FFFFFF",
