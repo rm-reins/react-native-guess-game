@@ -43,11 +43,19 @@ export const styles = StyleSheet.create({
     fontFamily: "Quicksand-Bold",
     backgroundColor: "#FFFFFF",
   },
-  error: {
-    color: "#EF4444",
-    fontFamily: "Quicksand-Bold",
-    marginBottom: 16,
+  errorContainer: {
+    backgroundColor: "rgba(255, 0, 0, 0.1)",
+    padding: 16,
+    borderRadius: 8,
+    marginVertical: 20,
+    borderWidth: 1,
+    borderColor: "rgba(255, 0, 0, 0.3)",
+    width: "80%",
+  },
+  errorText: {
+    fontFamily: "Quicksand-Medium",
+    color: "#d32f2f",
+    fontSize: 18,
     textAlign: "center",
-    fontSize: 14,
   },
 });
