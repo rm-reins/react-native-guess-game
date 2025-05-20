@@ -13,7 +13,7 @@ function Button({ variant, children, onPress }: ButtonProps) {
       style={[styles.button, styles[variant]]}
       onPress={onPress}
     >
-      <Text style={styles.text}>{children}</Text>
+      <Text style={[styles.text, styles[`${variant}Text`]]}>{children}</Text>
     </TouchableOpacity>
   );
 }

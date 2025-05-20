@@ -18,17 +18,29 @@ export const styles = StyleSheet.create({
     elevation: 5,
     minHeight: 56,
     minWidth: 120,
+    marginVertical: 5,
+    alignItems: "center",
   },
   primary: {
     backgroundColor: "#FF9F43",
   },
   secondary: {
-    backgroundColor: "#4FC1E9",
+    backgroundColor: "transparent",
+    borderWidth: 2,
+    borderColor: "#000",
   },
   text: {
-    color: "#FFFFFF",
-    fontSize: 20,
-    fontWeight: "700",
+    fontSize: 24,
+    fontFamily: "Quicksand-Bold",
     textAlign: "center",
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  primaryText: {
+    color: "#FFFFFF",
+  },
+  secondaryText: {
+    color: "#000",
   },
 });
