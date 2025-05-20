@@ -17,12 +17,15 @@ function StartGameScreen({ onStart }: StartGameScreenProps) {
 
     if (!number) {
       setError("Please enter a number");
+      return;
     }
 
     if (isNaN(parsedNumber) || parsedNumber < 1 || parsedNumber > 100) {
       setError("Please enter a number between 1 and 100");
+      return;
     }
 
+    setError("");
     onStart(parsedNumber);
   };
 
@@ -44,6 +47,12 @@ function StartGameScreen({ onStart }: StartGameScreenProps) {
         </Text>
       </View>
 
+      {error && (
+        <View style={styles.errorContainer}>
+          <Text style={styles.errorText}>{error}</Text>
+        </View>
+      )}
+
       <TextInput
         style={styles.inputContainer}
         value={number}
@@ -54,7 +63,7 @@ function StartGameScreen({ onStart }: StartGameScreenProps) {
         placeholderTextColor="#7794B7"
         onChangeText={(value) => setNumber(value)}
       />
-      {error && <Text style={styles.error}>{error}</Text>}
+
       <Button
         variant="primary"
         onPress={handleStartGame}
