@@ -40,6 +40,10 @@ export default function RootLayout() {
           name="game"
           options={{ headerShown: false }}
         />
+        <Stack.Screen
+          name="endgame"
+          options={{ headerShown: false }}
+        />
       </Stack>
     </View>
   );
