@@ -80,12 +80,7 @@ yarn start
 4. Run on your preferred platform:
 
 ```bash
-# For iOS
-npm run ios
-# For Android
-npm run android
-# For web
-npm run web
+npx expo start
 ```
 
 ## 📁 Project Structure
