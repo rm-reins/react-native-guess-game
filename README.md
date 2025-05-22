@@ -110,17 +110,3 @@ guess-game/
 3. After each guess, the game provides feedback (higher/lower)
 4. The game tracks the number of attempts
 5. Players can start a new game after completing a round
-
-## 🤝 Contributing
-
-Contributions are welcome! Please feel free to submit a Pull Request.
-
-## 📝 License
-
-This project is licensed under the MIT License - see the LICENSE file for details.
-
-## 🙏 Acknowledgments
-
-- Based on the React Native - The Practical Guide [2025] course
-- Built with modern React Native best practices
-- Enhanced with TypeScript for better type safety and developer experience
